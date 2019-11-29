@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <img id = 'logo' alt="earth" src="@/assets/earth.png">
+      <!-- <img id = 'logo' alt="earth" src="@/assets/earth.png"> -->
       <br>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |

@@ -1,16 +1,17 @@
 <template>
   <div class="hello">
-   
+    <span>a </span>
+    <input v-model="msg" placeholder="a" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Geocalc1',
+  name: "Geocalc1",
   props: {
     msg: String
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

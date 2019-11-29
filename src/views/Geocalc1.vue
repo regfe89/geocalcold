@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Geocalc1 msg="Welcome to Your Vue.js App"/>
+    <Geocalc1/>
   </div>
 </template>
 
