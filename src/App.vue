@@ -3,9 +3,9 @@
     <div id="nav">
       <!-- <img id = 'logo' alt="earth" src="@/assets/earth.png"> -->
       <br>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/geocalc1">Geocalc1</router-link>
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> | -->
+      <router-link to="/">Референц-эллипсоид Красовского</router-link>
     </div>
     <router-view/>
   </div>
