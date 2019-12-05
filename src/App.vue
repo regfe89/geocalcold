@@ -2,7 +2,6 @@
   <div id="app">
     <div id="nav">
       <!-- <img id = 'logo' alt="earth" src="@/assets/earth.png"> -->
-      <br>
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> | -->
       <router-link to="/">Референц-эллипсоид Красовского</router-link>
@@ -22,11 +21,6 @@
 
 #nav {
   padding: 3px;
-}
-
-#logo {
-  padding: 30px;
-  max-width: 189px;
 }
 
 #nav a {
