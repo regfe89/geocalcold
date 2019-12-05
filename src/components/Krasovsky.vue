@@ -25,6 +25,10 @@
       <td>{{ Math.cos(b_total_deg*Math.PI/180) }}</td>
     </tr>
     <tr>
+      <td>sin B</td>
+      <td>{{ Math.sin(b_total_deg*Math.PI/180) }}</td>
+    </tr>
+    <tr>
       <td>d</td>
       <td>d</td>
     </tr>
@@ -33,7 +37,7 @@
       <td>d</td>
     </tr>
     <div id="B_div">
-      <span>B:</span>
+      <span>B: </span>
       <span>
         <input id="B" type="number" v-model="B_deg" />
       </span>°
