@@ -28,9 +28,11 @@
         <td>{{ e_sq }} м</td>
       </tr>
       <tr>
-        <td>ρ</td>
-        <td>{{ ρ }}</td>
+        <td>ro</td>
+        <td>{{ ro }}</td>
       </tr>
+      <p>Вычисление длины дуги параллели земного эллипсоида</p>
+      
       <tr>
         <td>B в градусах</td>
         <td>{{ b_total_deg }}</td>
@@ -41,11 +43,11 @@
       </tr>
       <tr>
         <td>cos B</td>
-        <td>{{ cos_B }}</td>
+        <td>{{ cos_b }}</td>
       </tr>
       <tr>
         <td>sin B</td>
-        <td>{{ sin_B }}</td>
+        <td>{{ sin_b }}</td>
       </tr>
       <tr>
         <td>N</td>
@@ -60,34 +62,22 @@
           S
           <sub>П</sub>
         </td>
-        <td>{{ S }} м</td>
+        <td>{{ +s_parallel }} м</td>
       </tr>
-      <!-- <tr>
-        <td>d</td>
-        <td>d</td>
-      </tr>
-      <tr>
-        <td>d</td>
-        <td>d</td>
-      </tr>
-      <tr>
-        <td>d</td>
-        <td>d</td>
-      </tr> -->
       <div id="B_div">
-        <span>B: {{ f }}</span>
+        <span>B:</span>
         <span>
-          <input id="B" type="number" v-model="B_deg" placeholder="градусы" />
+          <input id="B" type="number" v-model="b_deg" placeholder="градусы" />
         </span>°
         <span>
-          <input id="B" type="number" v-model="B_min" placeholder="минуты" />
+          <input id="B" type="number" v-model="b_min" placeholder="минуты" />
         </span>'
         <span>
-          <input id="B" type="number" v-model="B_sec" placeholder="секунды" />
+          <input id="B" type="number" v-model="b_sec" placeholder="секунды" />
         </span>''
       </div>
       <div id="B_div">
-        <span>l: {{ f }}</span>
+        <span>l:</span>
         <span>
           <input id="B" type="number" v-model="l_deg" placeholder="градусы" />
         </span>°
@@ -96,6 +86,90 @@
         </span>'
         <span>
           <input id="B" type="number" v-model="l_sec" placeholder="секунды" />
+        </span>''
+      </div>
+      <p>Вычисление длины дуги меридиана земного эллипсоида</p>
+      <tr>
+        <td>
+          B
+          <sub>1</sub>
+          в градусах
+        </td>
+        <td>{{ b1_total_deg }}</td>
+      </tr>
+      <tr>
+        <td>
+          B
+          <sub>2</sub>
+          в градусах
+        </td>
+        <td>{{ b2_total_deg }}</td>
+      </tr>
+      <tr>
+        <td>
+          B
+          <sub>ср</sub>
+          в градусах
+        </td>
+        <td>{{ b_average }}</td>
+      </tr>
+      <tr>
+        <td>l в секундах</td>
+        <td>{{ l_total_sec }}</td>
+      </tr>
+      <tr>
+        <td>cos B</td>
+        <td>{{ cos_b }}</td>
+      </tr>
+      <tr>
+        <td>sin B</td>
+        <td>{{ sin_b }}</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>{{ N }}</td>
+      </tr>
+      <tr>
+        <td>r</td>
+        <td>{{ r }}</td>
+      </tr>
+      <tr>
+        <td>
+          S
+          <sub>П</sub>
+        </td>
+        <td>{{ Math.abs(s_meridian) }} м</td>
+      </tr>
+      <div id="B_div">
+        <span>
+          B
+          <sub>1</sub>
+          :
+        </span>
+        <span>
+          <input id="B" type="number" v-model="b1_deg" placeholder="градусы" />
+        </span>°
+        <span>
+          <input id="B" type="number" v-model="b1_min" placeholder="минуты" />
+        </span>'
+        <span>
+          <input id="B" type="number" v-model="b1_sec" placeholder="секунды" />
+        </span>''
+      </div>
+      <div id="B_div">
+        <span>
+          B
+          <sub>2</sub>
+          :
+        </span>
+        <span>
+          <input id="B" type="number" v-model="b2_deg" placeholder="градусы" />
+        </span>°
+        <span>
+          <input id="B" type="number" v-model="b2_min" placeholder="минуты" />
+        </span>'
+        <span>
+          <input id="B" type="number" v-model="b2_sec" placeholder="секунды" />
         </span>''
       </div>
     </div>
@@ -109,37 +183,86 @@ export default {
       (Math.pow(this.a, 2) - Math.pow(this.b, 2)) / Math.pow(this.a, 2);
   },
   beforeUpdate: function() {
-    this.b_total_deg = +this.B_deg + this.B_min / 60 + this.B_sec / 3600;
+    this.b_total_deg = +this.b_deg + this.b_min / 60 + this.b_sec / 3600;
+    this.b1_total_deg = +this.b1_deg + this.b1_min / 60 + this.b1_sec / 3600;
+    this.b2_total_deg = +this.b2_deg + this.b2_min / 60 + this.b2_sec / 3600;
     this.l_total_sec = +this.l_sec + this.l_deg * 3600 + this.l_min * 60;
-    this.cos_B = Math.cos((this.b_total_deg * Math.PI) / 180);
-    this.sin_B = Math.sin((this.b_total_deg * Math.PI) / 180);
+    this.cos_b = Math.cos((this.b_total_deg * Math.PI) / 180);
+    this.sin_b = Math.sin((this.b_total_deg * Math.PI) / 180);
+    this.sin_b1 = Math.sin((this.b1_total_deg * Math.PI) / 180);
+    this.sin_b2 = Math.sin((this.b2_total_deg * Math.PI) / 180);
+    this.sin_b_average = Math.sin((this.b_average * Math.PI) / 180);
     this.N =
-      ((1 - 0.25 * this.e_sq * Math.pow(this.sin_B, 2)) /
-        (1 - 0.75 * this.e_sq * Math.pow(this.sin_B, 2))) *
+      ((1 - 0.25 * this.e_sq * Math.pow(this.sin_b, 2)) /
+        (1 - 0.75 * this.e_sq * Math.pow(this.sin_b, 2))) *
       this.a;
-    this.r = this.N * this.cos_B;
-    this.S = (this.l_total_sec/this.ρ) * this.r
+    this.r = this.N * this.cos_b;
+    this.s_parallel = (this.l_total_sec / this.ro) * this.r;
+    this.b_average = (this.b1_total_deg + this.b2_total_deg) / 2;
+    this.m1 =
+      (this.a *
+        (1 - this.e_sq) *
+        (1 + 0.25 * this.e_sq * Math.pow(this.sin_b1, 2))) /
+      (1 - 0.25 * this.e_sq * Math.pow(this.sin_b1, 2));
+    this.m2 =
+      (this.a *
+        (1 - this.e_sq) *
+        (1 + 0.25 * this.e_sq * Math.pow(this.sin_b2, 2))) /
+      (1 - 0.25 * this.e_sq * Math.pow(this.sin_b2, 2));
+    this.m_average =
+      (+this.a *
+        (1 - this.e_sq) *
+        (1 + 0.25 * this.e_sq * Math.pow(this.sin_b_average, 2))) /
+      (1 - 0.25 * this.e_sq * Math.pow(this.sin_b_average, 2));
+    this.s_meridian =
+      ((this.b2_total_deg - this.b1_total_deg) / (6 * this.ro)) *
+      (this.m1 + this.m2 + 4 * this.m_average);
+    window.console.log("beforeupdate");
   },
+  // computed: {
+  //   execute: function() {
+  //     window.console.log("computed");
+  //     window.console.log(this.a);
+      
+
+  //     return 'ee'
+  //   }
+  // },
   data: function() {
     return {
       a: 6378245,
       b: 6356863,
       e_sq: null,
-      B_deg: null,
-      B_min: null,
-      B_sec: null,
+      b_deg: null,
+      b_min: null,
+      b_sec: null,
+      b1_deg: null,
+      b1_min: null,
+      b1_sec: null,
+      b2_deg: null,
+      b2_min: null,
+      b2_sec: null,
       b_total_deg: null,
-      cos_B: null,
-      sin_B: null,
+      b1_total_deg: null,
+      b2_total_deg: null,
+      cos_b: null,
+      sin_b: null,
       N: null,
       r: null,
       l_deg: null,
       l_min: null,
       l_sec: null,
       l_total_sec: null,
-      ρ: 206264.8062471,
+      ro: 206264.8062471,
       name: "Референц-эллипсоид Красовского",
-      S: null
+      s_parallel: null,
+      s_meridian: null,
+      b_average: null,
+      b1: null,
+      b2: null,
+      m1: null,
+      m2: null,
+      m_average: null
     };
   },
   methods: {
