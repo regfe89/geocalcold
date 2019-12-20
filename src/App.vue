@@ -217,7 +217,6 @@ export default {
     this.s_meridian =
       ((this.b2_total_deg - this.b1_total_deg) / (6 * this.ro)) *
       (this.m1 + this.m2 + 4 * this.m_average);
-    window.console.log("beforeupdate");
   },
   // computed: {
   //   execute: function() {
